@@ -179,3 +179,76 @@ for (let row = 1; row <= size; row++) {
 
   console.log(result);
 }
+
+// Exercise 9. Mirrored Right Triangle Star Pattern
+// *****
+// ****
+// ***
+// **
+// *
+
+let size = 5;
+
+for (let row = 1; row <= size; row++) {
+  let result = "";
+
+  for (let column = 1; column <= size; column++) {
+    if (column >= row || column === row) {
+      result += "*";
+    } else {
+      result += " ";
+    }
+  }
+
+  console.log(result);
+}
+
+// Exercise 10. Hollow Right Triangle Star Pattern
+
+
+// *
+// **
+// * *
+// *  *
+// *****
+
+let size = 5;
+
+for (let row = 1; row <= size; row++) {
+  let result = "";
+
+  for (let column = 1; column <= size; column++) {
+    if (column <= row) {
+      result += "*";
+    } else if (column >= row - 1 || ) {
+      result += " ";
+    }
+  }
+
+  console.log(result);
+}
+
+// Exercise 13. Pyramid (Equilateral Triangle) Star Pattern
+
+//     5
+//    456
+//   34567
+//  2345678
+// 123456789
+
+
+let size = 5;
+
+for (let row = 0; row <= size; row++) {
+  let result = "";
+
+  for (let column = 0; column <= size * 2 - 1; column++) {
+    if (column >= size - row - 1 && column <= size + row - 1) {
+      result += "*";
+    } else {
+      result += " ";
+    }
+  }
+
+  console.log(result);
+}
