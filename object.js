@@ -140,7 +140,7 @@ function FindMaleStudents(arr) {
 let Result5 = FindMaleStudents(Students5);
 console.log("Male students are:" + " " + Result5);
 
-// Exercise 6: Calculate the female student portion in the class
+// Exercise 6: Calculate the female student portion (%) in the class
 
 let Students6 = [
   { name: "Jason", age: 20, grade: 87, gender: "male", balance: 55000 },
@@ -170,3 +170,34 @@ function FindFemaleStudentsPortion(arr) {
 
 let Result6 = FindFemaleStudentsPortion(Students6);
 console.log("Female Students Portion is:" + " " + Result6 + "%");
+
+// JS Method.
+
+// Бодлого 2
+// Нас нь 18-аас доош бүх сурагчдыг шинэ array болгон ялгаж буцаадаг функц бич.
+
+const Students7 = [
+  { name: "Jason", age: 16, grade: 87, gender: "male", balance: 55000 },
+  { name: "Susan", age: 20, grade: 99, gender: "female", balance: 35000 },
+  { name: "Jay", age: 16, grade: 100, gender: "male", balance: 5000 },
+  { name: "Carol", age: 13, grade: 75, gender: "female", balance: 54000 },
+  { name: "Carol", age: 20, grade: 75, gender: "female", balance: 54000 },
+  { name: "Carol", age: 12, grade: 75, gender: "female", balance: 54000 },
+  { name: "Carol", age: 20, grade: 75, gender: "female", balance: 54000 },
+];
+
+function FindTeenagerArray(teenagers) {
+  const FilteredArray = [];
+  let count = 0;
+
+  for (i = 0; i < teenagers.length; i++) {
+    if (teenagers[i].age <= 18) {
+      FilteredArray[count] = teenagers[i];
+      count++;
+    }
+  }
+
+  return FilteredArray;
+}
+
+console.log(FindTeenagerArray(Students7));
