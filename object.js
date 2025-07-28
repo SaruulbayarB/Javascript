@@ -201,3 +201,128 @@ function FindTeenagerArray(teenagers) {
 }
 
 console.log(FindTeenagerArray(Students7));
+
+// Бодлого 3
+// Бүх сурагчдын нийт онооны нийлбэрийг буцаадаг функц бич.
+const Students8 = [
+  { name: "Jason", age: 16, grade: 87, gender: "male", balance: 55000 },
+  { name: "Susan", age: 20, grade: 99, gender: "female", balance: 35000 },
+  { name: "Jay", age: 16, grade: 100, gender: "male", balance: 5000 },
+  { name: "Carol", age: 13, grade: 75, gender: "female", balance: 54000 },
+  { name: "Carol", age: 20, grade: 75, gender: "female", balance: 54000 },
+  { name: "Carol", age: 12, grade: 75, gender: "female", balance: 54000 },
+  { name: "Carol", age: 20, grade: 75, gender: "female", balance: 54000 },
+];
+
+function FindSumOfGrades(Grade) {
+  let SumofGrades = 0;
+
+  for (i = 0; i < Grade.length; i++) {
+    SumofGrades += Grade[i].grade;
+  }
+
+  return SumofGrades;
+}
+
+console.log(FindSumOfGrades(Students8));
+
+// Бодлого 4
+// Өгөгдсөн нэртэй (name) бүх сурагчдыг буцаадаг функц бич. Жишээ нь: findStudentsByName(students, "boldo").
+
+const Students9 = [
+  { name: "Jason", age: 16, grade: 87, gender: "male", balance: 55000 },
+  { name: "Susan", age: 20, grade: 99, gender: "female", balance: 35000 },
+  { name: "Jay", age: 16, grade: 100, gender: "male", balance: 5000 },
+  { name: "Carol", age: 13, grade: 75, gender: "female", balance: 54000 },
+  { name: "Carol", age: 20, grade: 75, gender: "female", balance: 54000 },
+  { name: "Carol", age: 12, grade: 75, gender: "female", balance: 54000 },
+  { name: "Carol", age: 20, grade: 75, gender: "female", balance: 54000 },
+];
+
+function FindStudentByName(Students, Name) {
+  let StudentName = [];
+  for (i = 0; i < Students.length; i++) {
+    if (Students[i].name === Name) {
+      StudentName = Students[i];
+    }
+  }
+  return StudentName;
+}
+console.log(FindStudentByName(Students9, "Carol"));
+
+const Students10 = [
+  { name: "Jason", age: 16, grade: 87, gender: "male", balance: 55000 },
+  { name: "Susan", age: 20, grade: 99, gender: "female", balance: 35000 },
+  { name: "Jay", age: 16, grade: 100, gender: "male", balance: 5000 },
+  { name: "Carol", age: 13, grade: 75, gender: "female", balance: 54000 },
+  { name: "Carol", age: 20, grade: 75, gender: "female", balance: 54000 },
+  { name: "Carol", age: 12, grade: 75, gender: "female", balance: 54000 },
+  { name: "Carol", age: 20, grade: 75, gender: "female", balance: 54000 },
+];
+
+function FindStudentByName(Students, Name) {
+  let FilteredStudentNames = [];
+  for (i = 0; i < Students.length; i++) {
+    if (Students[i].name === Name) {
+      FilteredStudentNames.push(Students[i]);
+    }
+  }
+
+  return FilteredStudentNames;
+}
+
+console.log(FindStudentByName(Students10, "Carol"));
+
+// Бодлого 5
+// Бүх сурагчдыг онооны дарааллаар ихээс бага руу эрэмбэлдэг функц бич. (sort ашиглах)
+
+const Students11 = [
+  { name: "Jason", age: 16, grade: 87, gender: "male", balance: 55000 },
+  { name: "Susan", age: 20, grade: 99, gender: "female", balance: 35000 },
+  { name: "Jay", age: 16, grade: 100, gender: "male", balance: 5000 },
+  { name: "Carol", age: 13, grade: 75, gender: "female", balance: 54000 },
+  { name: "Carol", age: 20, grade: 55, gender: "female", balance: 54000 },
+  { name: "Jasmine", age: 12, grade: 69, gender: "female", balance: 54000 },
+  { name: "Sarah", age: 20, grade: 75, gender: "female", balance: 54000 },
+];
+
+Students11.sort((a, b) => a.grade - b.grade);
+
+console.log(Students11);
+
+// Бодлого 6
+// balance нь 10000-аас их сурагчдыг richStudents гэж нэрлээд, зөвхөн нэр болон балансын мэдээлэлтэйгээр шинэ массив үүсгэж буцаа.
+
+const Students12 = [
+  { name: "Jason", age: 16, grade: 87, gender: "male", balance: 55000 },
+  { name: "Susan", age: 20, grade: 99, gender: "female", balance: 35000 },
+  { name: "Jay", age: 16, grade: 100, gender: "male", balance: 5000 },
+  { name: "Carol", age: 13, grade: 75, gender: "female", balance: 54000 },
+  { name: "Ulya", age: 20, grade: 55, gender: "female", balance: 14000 },
+  { name: "Jasmine", age: 12, grade: 69, gender: "female", balance: 5000 },
+  { name: "Sarah", age: 20, grade: 75, gender: "female", balance: 99000 },
+];
+
+function FindRichStudents(ClassTycoons) {
+  let RichStudents = [];
+  for (i = 0; i < ClassTycoons.length; i++) {
+    if (ClassTycoons[i].balance >= 10000) {
+      RichStudents.push({
+        name: ClassTycoons[i].name,
+        balance: ClassTycoons[i].balance,
+      });
+    }
+  }
+  return RichStudents;
+}
+
+console.log(FindRichStudents(Students12));
+
+// Бодлого 7
+// Нэр бүрээр хэчнээн сурагч байгаа тоог тоолж, дараах хэлбэртэй объект буцаа:
+// { boldo: 3, dorjo: 1, bataa: 1 }
+
+// Бодлого 8
+// Сурагчдын gender тус бүрээр онооны дундаж хэд байгааг тооцоолж буцаадаг функц бич.
+// Жишээ:
+// { male: 30, female: 60 }
