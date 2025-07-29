@@ -326,3 +326,48 @@ console.log(FindRichStudents(Students12));
 // Сурагчдын gender тус бүрээр онооны дундаж хэд байгааг тооцоолж буцаадаг функц бич.
 // Жишээ:
 // { male: 30, female: 60 }
+
+
+const Students13 = [
+  { name: "Jason", age: 16, grade: 87, gender: "male", balance: 55000 },
+  { name: "Susan", age: 20, grade: 58, gender: "female", balance: 35000 },
+  { name: "Jay", age: 16, grade: 100, gender: "male", balance: 5000 },
+  { name: "Carol", age: 13, grade: 75, gender: "female", balance: 54000 },
+  { name: "Ulya", age: 20, grade: 55, gender: "female", balance: 14000 },
+  { name: "Jasmine", age: 12, grade: 69, gender: "female", balance: 5000 },
+  { name: "Sarah", age: 20, grade: 75, gender: "female", balance: 99000 },
+];
+
+function findGenderGradeAverages(students) {
+  let maleCounter = 0;
+  let maleGradeSum = 0;
+
+  let femaleCounter = 0;
+  let femaleGradeSum = 0;
+
+  for (let i = 0; i < students.length; i++) {
+    if (students[i].gender === "male") {
+      maleCounter++;
+      maleGradeSum += students[i].grade;
+    } else if (students[i].gender === "female") {
+      femaleCounter++;
+      femaleGradeSum += students[i].grade;
+    }
+  }
+
+  const maleAvg = maleGradeSum / maleCounter;
+  const femaleAvg = femaleGradeSum / femaleCounter;
+
+  return {
+    maleAverage: maleAvg,
+    femaleAverage: femaleAvg,
+  };
+}
+
+const result = findGenderGradeAverages(Students13);
+console.log("Male:", result.maleAverage);
+console.log("Female:", result.femaleAverage);
+
+
+
+
