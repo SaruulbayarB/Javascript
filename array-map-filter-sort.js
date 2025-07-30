@@ -897,3 +897,859 @@ function getTotalStock(products) {
   return totalStock;
 }
 console.log("Total Stock is: " + getTotalStock(data10) + " " + "pcs");
+
+
+// 12. Бүх бүтээгдэхүүний нийлбэр үнийг тооцдог функц бич.
+// function getTotalPrice(products) {
+//   // ...
+// }
+
+let data11 = [
+  {
+    name: "iPhone 13",
+    category: "Electronics",
+    price: 1200000,
+    stock: 10,
+    brand: "Apple",
+    rating: 4.8,
+    isDiscounted: true,
+    discountPercent: 10,
+    supplier: "MobiCom",
+    weight: 0.3,
+  },
+  {
+    name: "Samsung Galaxy S22",
+    category: "Electronics",
+    price: 950000,
+    stock: 5,
+    brand: "Samsung",
+    rating: 4.5,
+    isDiscounted: false,
+    discountPercent: 0,
+    supplier: "Unitel",
+    weight: 0.28,
+  },
+  {
+    name: "Dell XPS 13",
+    category: "Computers",
+    price: 2800000,
+    stock: 3,
+    brand: "Dell",
+    rating: 4.7,
+    isDiscounted: true,
+    discountPercent: 15,
+    supplier: "PCMall",
+    weight: 1.2,
+  },
+  {
+    name: "Mouse Logitech M590",
+    category: "Accessories",
+    price: 85000,
+    stock: 20,
+    brand: "Logitech",
+    rating: 4.3,
+    isDiscounted: true,
+    discountPercent: 5,
+    supplier: "PCMall",
+    weight: 0.1,
+  },
+  {
+    name: "MacBook Air M2",
+    category: "Computers",
+    price: 3200000,
+    stock: 0,
+    brand: "Apple",
+    rating: 4.9,
+    isDiscounted: false,
+    discountPercent: 0,
+    supplier: "MobiCom",
+    weight: 1.1,
+  },
+];
+
+function getTotalPrice(products) {
+
+let TotalPrice = 0; 
+
+products.filter((product) => {
+
+ return (TotalPrice += product.price); 
+
+}); 
+
+return TotalPrice; 
+
+}
+
+console.log(getTotalPrice(data11)); 
+
+// 13. Тухайн supplier-аар шүүж бүтээгдэхүүнүүдийг буцаадаг функц бич.
+// function filterBySupplier(products, supplierName) {
+//   // ...
+// }
+
+let data12 = [
+  {
+    name: "iPhone 13",
+    category: "Electronics",
+    price: 1200000,
+    stock: 10,
+    brand: "Apple",
+    rating: 4.8,
+    isDiscounted: true,
+    discountPercent: 10,
+    supplier: "MobiCom",
+    weight: 0.3,
+  },
+  {
+    name: "Samsung Galaxy S22",
+    category: "Electronics",
+    price: 950000,
+    stock: 5,
+    brand: "Samsung",
+    rating: 4.5,
+    isDiscounted: false,
+    discountPercent: 0,
+    supplier: "Unitel",
+    weight: 0.28,
+  },
+  {
+    name: "Dell XPS 13",
+    category: "Computers",
+    price: 2800000,
+    stock: 3,
+    brand: "Dell",
+    rating: 4.7,
+    isDiscounted: true,
+    discountPercent: 15,
+    supplier: "PCMall",
+    weight: 1.2,
+  },
+  {
+    name: "Mouse Logitech M590",
+    category: "Accessories",
+    price: 85000,
+    stock: 20,
+    brand: "Logitech",
+    rating: 4.3,
+    isDiscounted: true,
+    discountPercent: 5,
+    supplier: "PCMall",
+    weight: 0.1,
+  },
+  {
+    name: "MacBook Air M2",
+    category: "Computers",
+    price: 3200000,
+    stock: 0,
+    brand: "Apple",
+    rating: 4.9,
+    isDiscounted: false,
+    discountPercent: 0,
+    supplier: "MobiCom",
+    weight: 1.1,
+  },
+];
+
+function filterBySupplier(products, supplierName) {
+
+let ProductsBySupplier = products.filter((product) => {
+
+    return product.supplier === supplierName; 
+  });
+
+  return ProductsBySupplier; 
+}
+
+console.log(filterBySupplier(data12,"MobiCom")); 
+
+// // 14. Бүх бүтээгдэхүүний нэрсийг массив болгон буцаадаг функц бич.
+// function getProductNames(products) {
+//   // ...
+// }
+
+let data13 = [
+  {
+    name: "iPhone 13",
+    category: "Electronics",
+    price: 1200000,
+    stock: 10,
+    brand: "Apple",
+    rating: 4.8,
+    isDiscounted: true,
+    discountPercent: 10,
+    supplier: "MobiCom",
+    weight: 0.3,
+  },
+  {
+    name: "Samsung Galaxy S22",
+    category: "Electronics",
+    price: 950000,
+    stock: 5,
+    brand: "Samsung",
+    rating: 4.5,
+    isDiscounted: false,
+    discountPercent: 0,
+    supplier: "Unitel",
+    weight: 0.28,
+  },
+  {
+    name: "Dell XPS 13",
+    category: "Computers",
+    price: 2800000,
+    stock: 3,
+    brand: "Dell",
+    rating: 4.7,
+    isDiscounted: true,
+    discountPercent: 15,
+    supplier: "PCMall",
+    weight: 1.2,
+  },
+  {
+    name: "Mouse Logitech M590",
+    category: "Accessories",
+    price: 85000,
+    stock: 20,
+    brand: "Logitech",
+    rating: 4.3,
+    isDiscounted: true,
+    discountPercent: 5,
+    supplier: "PCMall",
+    weight: 0.1,
+  },
+  {
+    name: "MacBook Air M2",
+    category: "Computers",
+    price: 3200000,
+    stock: 0,
+    brand: "Apple",
+    rating: 4.9,
+    isDiscounted: false,
+    discountPercent: 0,
+    supplier: "MobiCom",
+    weight: 1.1,
+  },
+];
+
+function getProductNames(products) {
+
+ return products.map ((product) => {
+  
+    const {category, price, stock, brand, rating, isDiscounted, discountPercent, supplier, weight, ...NewItems} = product
+    return NewItems; 
+
+}); 
+}
+console.log(getProductNames(data13)); 
+
+// // 15. Бүтээгдэхүүнүүдийг үнээр нь өсөхөөр эрэмбэлж буцаадаг функц бич.
+// function sortByPriceAscending(products) {
+//   // ...
+// }
+
+let data15 = [
+  {
+    name: "iPhone 13",
+    category: "Electronics",
+    price: 1200000,
+    stock: 10,
+    brand: "Apple",
+    rating: 4.8,
+    isDiscounted: true,
+    discountPercent: 10,
+    supplier: "MobiCom",
+    weight: 0.3,
+  },
+  {
+    name: "Samsung Galaxy S22",
+    category: "Electronics",
+    price: 950000,
+    stock: 5,
+    brand: "Samsung",
+    rating: 4.5,
+    isDiscounted: false,
+    discountPercent: 0,
+    supplier: "Unitel",
+    weight: 0.28,
+  },
+  {
+    name: "Dell XPS 13",
+    category: "Computers",
+    price: 2800000,
+    stock: 3,
+    brand: "Dell",
+    rating: 4.7,
+    isDiscounted: true,
+    discountPercent: 15,
+    supplier: "PCMall",
+    weight: 1.2,
+  },
+  {
+    name: "Mouse Logitech M590",
+    category: "Accessories",
+    price: 85000,
+    stock: 20,
+    brand: "Logitech",
+    rating: 4.3,
+    isDiscounted: true,
+    discountPercent: 5,
+    supplier: "PCMall",
+    weight: 0.1,
+  },
+  {
+    name: "MacBook Air M2",
+    category: "Computers",
+    price: 3200000,
+    stock: 0,
+    brand: "Apple",
+    rating: 4.9,
+    isDiscounted: false,
+    discountPercent: 0,
+    supplier: "MobiCom",
+    weight: 1.1,
+  },
+];
+
+function sortByPriceAscending(products) {
+return products.sort((a,b) => a.price - b.price); 
+
+}
+console.log(sortByPriceAscending(data15));
+
+// 16. Нөөц багатай (≤ 5) бүтээгдэхүүнүүдийг шүүж буцаадаг функц бич.
+// function getLowStockProducts(products) {
+//   // ...
+// }
+
+let data16 = [
+  {
+    name: "iPhone 13",
+    category: "Electronics",
+    price: 1200000,
+    stock: 10,
+    brand: "Apple",
+    rating: 4.8,
+    isDiscounted: true,
+    discountPercent: 10,
+    supplier: "MobiCom",
+    weight: 0.3,
+  },
+  {
+    name: "Samsung Galaxy S22",
+    category: "Electronics",
+    price: 950000,
+    stock: 5,
+    brand: "Samsung",
+    rating: 4.5,
+    isDiscounted: false,
+    discountPercent: 0,
+    supplier: "Unitel",
+    weight: 0.28,
+  },
+  {
+    name: "Dell XPS 13",
+    category: "Computers",
+    price: 2800000,
+    stock: 3,
+    brand: "Dell",
+    rating: 4.7,
+    isDiscounted: true,
+    discountPercent: 15,
+    supplier: "PCMall",
+    weight: 1.2,
+  },
+  {
+    name: "Mouse Logitech M590",
+    category: "Accessories",
+    price: 85000,
+    stock: 20,
+    brand: "Logitech",
+    rating: 4.3,
+    isDiscounted: true,
+    discountPercent: 5,
+    supplier: "PCMall",
+    weight: 0.1,
+  },
+  {
+    name: "MacBook Air M2",
+    category: "Computers",
+    price: 3200000,
+    stock: 0,
+    brand: "Apple",
+    rating: 4.9,
+    isDiscounted: false,
+    discountPercent: 0,
+    supplier: "MobiCom",
+    weight: 1.1,
+  },
+];
+
+
+ function getLowStockProducts(products) {
+
+  const StockLeftover = products.filter((product) => {
+
+    return product.stock < 5; 
+  })
+
+  return StockLeftover; 
+ }
+
+ console.log(getLowStockProducts(data16));
+
+ // 17. Давхардалгүй нийлүүлэгчийн нэрсийн массив буцаадаг функц бич.
+// function getUniqueSuppliers(products) {
+//   // ...
+// }
+
+
+// 18. Зөвхөн name ба price талбартай шинэ массив үүсгэдэг функц бич.
+// function getNameAndPriceList(products) {
+//   // ...
+// }
+
+let data18 = [
+  {
+    name: "iPhone 13",
+    category: "Electronics",
+    price: 1200000,
+    stock: 10,
+    brand: "Apple",
+    rating: 4.8,
+    isDiscounted: true,
+    discountPercent: 10,
+    supplier: "MobiCom",
+    weight: 0.3,
+  },
+  {
+    name: "Samsung Galaxy S22",
+    category: "Electronics",
+    price: 950000,
+    stock: 5,
+    brand: "Samsung",
+    rating: 4.5,
+    isDiscounted: false,
+    discountPercent: 0,
+    supplier: "Unitel",
+    weight: 0.28,
+  },
+  {
+    name: "Dell XPS 13",
+    category: "Computers",
+    price: 2800000,
+    stock: 3,
+    brand: "Dell",
+    rating: 4.7,
+    isDiscounted: true,
+    discountPercent: 15,
+    supplier: "PCMall",
+    weight: 1.2,
+  },
+  {
+    name: "Mouse Logitech M590",
+    category: "Accessories",
+    price: 85000,
+    stock: 20,
+    brand: "Logitech",
+    rating: 4.3,
+    isDiscounted: true,
+    discountPercent: 5,
+    supplier: "PCMall",
+    weight: 0.1,
+  },
+  {
+    name: "MacBook Air M2",
+    category: "Computers",
+    price: 3200000,
+    stock: 0,
+    brand: "Apple",
+    rating: 4.9,
+    isDiscounted: false,
+    discountPercent: 0,
+    supplier: "MobiCom",
+    weight: 1.1,
+  },
+];
+
+function getNameAndPriceList(products) {
+
+return products.map((product) => {
+
+  const {category, stock, brand, rating, isDiscounted, discountPercent, supplier, weight, ...PriceAndName} = product;
+    return PriceAndName; 
+});
+
+}
+
+console.log(getNameAndPriceList(data18));
+
+
+// 19. Үнэлгээ нь 4.5-аас их бүх бүтээгдэхүүнүүдийг буцаадаг функц бич.
+// function getHighlyRatedProducts(products) {
+//   // ...
+// }
+
+let data19 = [
+  {
+    name: "iPhone 13",
+    category: "Electronics",
+    price: 1200000,
+    stock: 10,
+    brand: "Apple",
+    rating: 4.8,
+    isDiscounted: true,
+    discountPercent: 10,
+    supplier: "MobiCom",
+    weight: 0.3,
+  },
+  {
+    name: "Samsung Galaxy S22",
+    category: "Electronics",
+    price: 950000,
+    stock: 5,
+    brand: "Samsung",
+    rating: 4.5,
+    isDiscounted: false,
+    discountPercent: 0,
+    supplier: "Unitel",
+    weight: 0.28,
+  },
+  {
+    name: "Dell XPS 13",
+    category: "Computers",
+    price: 2800000,
+    stock: 3,
+    brand: "Dell",
+    rating: 4.7,
+    isDiscounted: true,
+    discountPercent: 15,
+    supplier: "PCMall",
+    weight: 1.2,
+  },
+  {
+    name: "Mouse Logitech M590",
+    category: "Accessories",
+    price: 85000,
+    stock: 20,
+    brand: "Logitech",
+    rating: 4.3,
+    isDiscounted: true,
+    discountPercent: 5,
+    supplier: "PCMall",
+    weight: 0.1,
+  },
+  {
+    name: "MacBook Air M2",
+    category: "Computers",
+    price: 3200000,
+    stock: 0,
+    brand: "Apple",
+    rating: 4.9,
+    isDiscounted: false,
+    discountPercent: 0,
+    supplier: "MobiCom",
+    weight: 1.1,
+  },
+];
+
+function getHighlyRatedProducts(products) {
+
+const filteredByRate = products.filter((product) => {
+
+return product.rating > 4.5; 
+
+});
+
+return filteredByRate; 
+}
+
+console.log(getHighlyRatedProducts(data19)); 
+
+// 20. Бүх бүтээгдэхүүнд `id` талбар нэмж өгдөг функц бич (жишээ нь 1, 2, 3...).
+// function addIdToProducts(products) {
+//   // ...
+// }
+
+
+let data20 = [
+  {
+    name: "iPhone 13",
+    category: "Electronics",
+    price: 1200000,
+    stock: 10,
+    brand: "Apple",
+    rating: 4.8,
+    isDiscounted: true,
+    discountPercent: 10,
+    supplier: "MobiCom",
+    weight: 0.3,
+  },
+  {
+    name: "Samsung Galaxy S22",
+    category: "Electronics",
+    price: 950000,
+    stock: 5,
+    brand: "Samsung",
+    rating: 4.5,
+    isDiscounted: false,
+    discountPercent: 0,
+    supplier: "Unitel",
+    weight: 0.28,
+  },
+  {
+    name: "Dell XPS 13",
+    category: "Computers",
+    price: 2800000,
+    stock: 3,
+    brand: "Dell",
+    rating: 4.7,
+    isDiscounted: true,
+    discountPercent: 15,
+    supplier: "PCMall",
+    weight: 1.2,
+  },
+  {
+    name: "Mouse Logitech M590",
+    category: "Accessories",
+    price: 85000,
+    stock: 20,
+    brand: "Logitech",
+    rating: 4.3,
+    isDiscounted: true,
+    discountPercent: 5,
+    supplier: "PCMall",
+    weight: 0.1,
+  },
+  {
+    name: "MacBook Air M2",
+    category: "Computers",
+    price: 3200000,
+    stock: 0,
+    brand: "Apple",
+    rating: 4.9,
+    isDiscounted: false,
+    discountPercent: 0,
+    supplier: "MobiCom",
+    weight: 1.1,
+  },
+];
+
+function addIdToProducts(products) {
+
+return products.map((product) => {
+return {
+  ...product, 
+
+  id: "", 
+};  
+
+});
+}
+console.log(addIdToProducts(data20));
+
+//-----------=====-------------------------====-----------------------=====-----------------------=====------++++++
+
+ // 1. Нөөцөд байгаа (isAvailable === true) машинуудыг буцаадаг функц бич.
+// function getAvailableCars(cars) {
+//   // ...
+
+
+let cars = [
+  {
+    model: "Toyota Prius",
+    type: "Hybrid",
+    price: 35000000,
+    mileage: 120000,
+    brand: "Toyota",
+    year: 2016,
+    isAvailable: true,
+    fuelEfficiency: 4.2,
+    color: "white",
+    supplier: "AutoJapan",
+    engineSize: 1.8,
+  },
+  {
+    model: "Honda Civic",
+    type: "Sedan",
+    price: 32000000,
+    mileage: 85000,
+    brand: "Honda",
+    year: 2018,
+    isAvailable: false,
+    fuelEfficiency: 5.8,
+    color: "blue",
+    supplier: "CityMotors",
+    engineSize: 2.0,
+  },
+  {
+    model: "Tesla Model 3",
+    type: "Electric",
+    price: 85000000,
+    mileage: 30000,
+    brand: "Tesla",
+    year: 2021,
+    isAvailable: true,
+    fuelEfficiency: 0,
+    color: "red",
+    supplier: "E-Car Dealer",
+    engineSize: 0,
+  },
+  {
+    model: "Ford Ranger",
+    type: "Truck",
+    price: 57000000,
+    mileage: 110000,
+    brand: "Ford",
+    year: 2019,
+    isAvailable: true,
+    fuelEfficiency: 9.5,
+    color: "black",
+    supplier: "MongolAuto",
+    engineSize: 3.2,
+  },
+  {
+    model: "Hyundai Sonata",
+    type: "Sedan",
+    price: 29000000,
+    mileage: 95000,
+    brand: "Hyundai",
+    year: 2017,
+    isAvailable: false,
+    fuelEfficiency: 6.5,
+    color: "silver",
+    supplier: "AutoJapan",
+    engineSize: 2.4,
+  },
+];
+
+function getAvailableCars(Vehicles) {
+
+  let availableCars = cars.filter((vehicle) => {
+
+    return vehicle.isAvailable === true; 
+
+  }); 
+
+  return availableCars; 
+}
+
+console.log(getAvailableCars(cars)); 
+
+
+// 2. 2018 оноос хойш үйлдвэрлэгдсэн машинуудыг буцаадаг функц бич.
+// function getRecentCars(cars) {
+
+
+function getRecentCars(vehicles) {
+
+  let newCars = vehicles.filter((vehicle) => {
+
+    return vehicle.year > 2018; 
+
+  }); 
+
+return newCars; 
+}
+
+console.log(getRecentCars(cars)); 
+
+
+
+// 3. 5 саяас дээш үнэтэй машинуудыг буцаадаг функц бич.
+// function getExpensiveCars(cars) {
+
+function getExpensiveCars(vehicles) {
+
+  return vehicles.map((vehicle) => {
+
+    return vehicle.price > 5000000; 
+
+  }); 
+}
+console.log(getExpensiveCars(cars)); 
+
+
+
+// 4. "Sedan" төрөлтэй машинуудыг буцаадаг функц бич.
+// function getSedans(cars) {
+
+let cars1 = [
+  {
+    model: "Toyota Prius",
+    type: "Hybrid",
+    price: 35000000,
+    mileage: 120000,
+    brand: "Toyota",
+    year: 2016,
+    isAvailable: true,
+    fuelEfficiency: 4.2,
+    color: "white",
+    supplier: "AutoJapan",
+    engineSize: 1.8,
+  },
+  {
+    model: "Honda Civic",
+    type: "Sedan",
+    price: 32000000,
+    mileage: 85000,
+    brand: "Honda",
+    year: 2018,
+    isAvailable: false,
+    fuelEfficiency: 5.8,
+    color: "blue",
+    supplier: "CityMotors",
+    engineSize: 2.0,
+  },
+  {
+    model: "Tesla Model 3",
+    type: "Electric",
+    price: 85000000,
+    mileage: 30000,
+    brand: "Tesla",
+    year: 2021,
+    isAvailable: true,
+    fuelEfficiency: 0,
+    color: "red",
+    supplier: "E-Car Dealer",
+    engineSize: 0,
+  },
+  {
+    model: "Ford Ranger",
+    type: "Truck",
+    price: 57000000,
+    mileage: 110000,
+    brand: "Ford",
+    year: 2019,
+    isAvailable: true,
+    fuelEfficiency: 9.5,
+    color: "black",
+    supplier: "MongolAuto",
+    engineSize: 3.2,
+  },
+  {
+    model: "Hyundai Sonata",
+    type: "Sedan",
+    price: 29000000,
+    mileage: 95000,
+    brand: "Hyundai",
+    year: 2017,
+    isAvailable: false,
+    fuelEfficiency: 6.5,
+    color: "silver",
+    supplier: "AutoJapan",
+    engineSize: 2.4,
+  },
+];
+
+function getSedans(vehicles) {
+
+  let Sedans = vehicles.filter((vehicle) => {
+
+    return vehicle.type === "Sedan"; 
+
+  }); 
+
+  return Sedans;
+}
+console.log(getSedans(cars1)); 
+
