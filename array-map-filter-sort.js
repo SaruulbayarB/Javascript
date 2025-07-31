@@ -898,7 +898,6 @@ function getTotalStock(products) {
 }
 console.log("Total Stock is: " + getTotalStock(data10) + " " + "pcs");
 
-
 // 12. Бүх бүтээгдэхүүний нийлбэр үнийг тооцдог функц бич.
 // function getTotalPrice(products) {
 //   // ...
@@ -968,20 +967,16 @@ let data11 = [
 ];
 
 function getTotalPrice(products) {
+  let TotalPrice = 0;
 
-let TotalPrice = 0; 
+  products.filter((product) => {
+    return (TotalPrice += product.price);
+  });
 
-products.filter((product) => {
-
- return (TotalPrice += product.price); 
-
-}); 
-
-return TotalPrice; 
-
+  return TotalPrice;
 }
 
-console.log(getTotalPrice(data11)); 
+console.log(getTotalPrice(data11));
 
 // 13. Тухайн supplier-аар шүүж бүтээгдэхүүнүүдийг буцаадаг функц бич.
 // function filterBySupplier(products, supplierName) {
@@ -1052,16 +1047,14 @@ let data12 = [
 ];
 
 function filterBySupplier(products, supplierName) {
-
-let ProductsBySupplier = products.filter((product) => {
-
-    return product.supplier === supplierName; 
+  let ProductsBySupplier = products.filter((product) => {
+    return product.supplier === supplierName;
   });
 
-  return ProductsBySupplier; 
+  return ProductsBySupplier;
 }
 
-console.log(filterBySupplier(data12,"MobiCom")); 
+console.log(filterBySupplier(data12, "MobiCom"));
 
 // // 14. Бүх бүтээгдэхүүний нэрсийг массив болгон буцаадаг функц бич.
 // function getProductNames(products) {
@@ -1132,15 +1125,23 @@ let data13 = [
 ];
 
 function getProductNames(products) {
-
- return products.map ((product) => {
-  
-    const {category, price, stock, brand, rating, isDiscounted, discountPercent, supplier, weight, ...NewItems} = product
-    return NewItems; 
-
-}); 
+  return products.map((product) => {
+    const {
+      category,
+      price,
+      stock,
+      brand,
+      rating,
+      isDiscounted,
+      discountPercent,
+      supplier,
+      weight,
+      ...NewItems
+    } = product;
+    return NewItems;
+  });
 }
-console.log(getProductNames(data13)); 
+console.log(getProductNames(data13));
 
 // // 15. Бүтээгдэхүүнүүдийг үнээр нь өсөхөөр эрэмбэлж буцаадаг функц бич.
 // function sortByPriceAscending(products) {
@@ -1211,8 +1212,7 @@ let data15 = [
 ];
 
 function sortByPriceAscending(products) {
-return products.sort((a,b) => a.price - b.price); 
-
+  return products.sort((a, b) => a.price - b.price);
 }
 console.log(sortByPriceAscending(data15));
 
@@ -1284,24 +1284,20 @@ let data16 = [
   },
 ];
 
-
- function getLowStockProducts(products) {
-
+function getLowStockProducts(products) {
   const StockLeftover = products.filter((product) => {
+    return product.stock < 5;
+  });
 
-    return product.stock < 5; 
-  })
+  return StockLeftover;
+}
 
-  return StockLeftover; 
- }
+console.log(getLowStockProducts(data16));
 
- console.log(getLowStockProducts(data16));
-
- // 17. Давхардалгүй нийлүүлэгчийн нэрсийн массив буцаадаг функц бич.
+// 17. Давхардалгүй нийлүүлэгчийн нэрсийн массив буцаадаг функц бич.
 // function getUniqueSuppliers(products) {
 //   // ...
 // }
-
 
 // 18. Зөвхөн name ба price талбартай шинэ массив үүсгэдэг функц бич.
 // function getNameAndPriceList(products) {
@@ -1372,17 +1368,23 @@ let data18 = [
 ];
 
 function getNameAndPriceList(products) {
-
-return products.map((product) => {
-
-  const {category, stock, brand, rating, isDiscounted, discountPercent, supplier, weight, ...PriceAndName} = product;
-    return PriceAndName; 
-});
-
+  return products.map((product) => {
+    const {
+      category,
+      stock,
+      brand,
+      rating,
+      isDiscounted,
+      discountPercent,
+      supplier,
+      weight,
+      ...PriceAndName
+    } = product;
+    return PriceAndName;
+  });
 }
 
 console.log(getNameAndPriceList(data18));
-
 
 // 19. Үнэлгээ нь 4.5-аас их бүх бүтээгдэхүүнүүдийг буцаадаг функц бич.
 // function getHighlyRatedProducts(products) {
@@ -1453,23 +1455,19 @@ let data19 = [
 ];
 
 function getHighlyRatedProducts(products) {
+  const filteredByRate = products.filter((product) => {
+    return product.rating > 4.5;
+  });
 
-const filteredByRate = products.filter((product) => {
-
-return product.rating > 4.5; 
-
-});
-
-return filteredByRate; 
+  return filteredByRate;
 }
 
-console.log(getHighlyRatedProducts(data19)); 
+console.log(getHighlyRatedProducts(data19));
 
 // 20. Бүх бүтээгдэхүүнд `id` талбар нэмж өгдөг функц бич (жишээ нь 1, 2, 3...).
 // function addIdToProducts(products) {
 //   // ...
 // }
-
 
 let data20 = [
   {
@@ -1535,24 +1533,21 @@ let data20 = [
 ];
 
 function addIdToProducts(products) {
+  return products.map((product) => {
+    return {
+      ...product,
 
-return products.map((product) => {
-return {
-  ...product, 
-
-  id: "", 
-};  
-
-});
+      id: "",
+    };
+  });
 }
 console.log(addIdToProducts(data20));
 
 //-----------=====-------------------------====-----------------------=====-----------------------=====------++++++
 
- // 1. Нөөцөд байгаа (isAvailable === true) машинуудыг буцаадаг функц бич.
+// 1. Нөөцөд байгаа (isAvailable === true) машинуудыг буцаадаг функц бич.
 // function getAvailableCars(cars) {
 //   // ...
-
 
 let cars = [
   {
@@ -1623,52 +1618,105 @@ let cars = [
 ];
 
 function getAvailableCars(Vehicles) {
-
   let availableCars = cars.filter((vehicle) => {
+    return vehicle.isAvailable === true;
+  });
 
-    return vehicle.isAvailable === true; 
-
-  }); 
-
-  return availableCars; 
+  return availableCars;
 }
 
-console.log(getAvailableCars(cars)); 
-
+console.log(getAvailableCars(cars));
 
 // 2. 2018 оноос хойш үйлдвэрлэгдсэн машинуудыг буцаадаг функц бич.
 // function getRecentCars(cars) {
 
-
 function getRecentCars(vehicles) {
-
   let newCars = vehicles.filter((vehicle) => {
+    return vehicle.year > 2018;
+  });
 
-    return vehicle.year > 2018; 
-
-  }); 
-
-return newCars; 
+  return newCars;
 }
 
-console.log(getRecentCars(cars)); 
-
-
+console.log(getRecentCars(cars));
 
 // 3. 5 саяас дээш үнэтэй машинуудыг буцаадаг функц бич.
 // function getExpensiveCars(cars) {
 
+let cars3 = [
+  {
+    model: "Toyota Prius",
+    type: "Hybrid",
+    price: 35000000,
+    mileage: 120000,
+    brand: "Toyota",
+    year: 2016,
+    isAvailable: true,
+    fuelEfficiency: 4.2,
+    color: "white",
+    supplier: "AutoJapan",
+    engineSize: 1.8,
+  },
+  {
+    model: "Honda Civic",
+    type: "Sedan",
+    price: 32000000,
+    mileage: 85000,
+    brand: "Honda",
+    year: 2018,
+    isAvailable: false,
+    fuelEfficiency: 5.8,
+    color: "blue",
+    supplier: "CityMotors",
+    engineSize: 2.0,
+  },
+  {
+    model: "Tesla Model 3",
+    type: "Electric",
+    price: 85000000,
+    mileage: 30000,
+    brand: "Tesla",
+    year: 2021,
+    isAvailable: true,
+    fuelEfficiency: 0,
+    color: "red",
+    supplier: "E-Car Dealer",
+    engineSize: 0,
+  },
+  {
+    model: "Ford Ranger",
+    type: "Truck",
+    price: 57000000,
+    mileage: 110000,
+    brand: "Ford",
+    year: 2019,
+    isAvailable: true,
+    fuelEfficiency: 9.5,
+    color: "black",
+    supplier: "MongolAuto",
+    engineSize: 3.2,
+  },
+  {
+    model: "Hyundai Sonata",
+    type: "Sedan",
+    price: 29000000,
+    mileage: 95000,
+    brand: "Hyundai",
+    year: 2017,
+    isAvailable: false,
+    fuelEfficiency: 6.5,
+    color: "silver",
+    supplier: "AutoJapan",
+    engineSize: 2.4,
+  },
+];
+
 function getExpensiveCars(vehicles) {
-
   return vehicles.map((vehicle) => {
-
-    return vehicle.price > 5000000; 
-
-  }); 
+    return vehicle.price > 5000000;
+  });
 }
-console.log(getExpensiveCars(cars)); 
-
-
+console.log(getExpensiveCars(cars3));
 
 // 4. "Sedan" төрөлтэй машинуудыг буцаадаг функц бич.
 // function getSedans(cars) {
@@ -1742,14 +1790,1304 @@ let cars1 = [
 ];
 
 function getSedans(vehicles) {
-
   let Sedans = vehicles.filter((vehicle) => {
-
-    return vehicle.type === "Sedan"; 
-
-  }); 
+    return vehicle.type === "Sedan";
+  });
 
   return Sedans;
 }
-console.log(getSedans(cars1)); 
+console.log(getSedans(cars1));
 
+// 5. Брэндээр шүүж буцаадаг функц бич.
+// function filterByBrand(cars, brandName) {
+//   // ...
+// }
+
+let cars2 = [
+  {
+    model: "Toyota Prius",
+    type: "Hybrid",
+    price: 35000000,
+    mileage: 120000,
+    brand: "Toyota",
+    year: 2016,
+    isAvailable: true,
+    fuelEfficiency: 4.2,
+    color: "white",
+    supplier: "AutoJapan",
+    engineSize: 1.8,
+  },
+  {
+    model: "Honda Civic",
+    type: "Sedan",
+    price: 32000000,
+    mileage: 85000,
+    brand: "Honda",
+    year: 2018,
+    isAvailable: false,
+    fuelEfficiency: 5.8,
+    color: "blue",
+    supplier: "CityMotors",
+    engineSize: 2.0,
+  },
+  {
+    model: "Tesla Model 3",
+    type: "Electric",
+    price: 85000000,
+    mileage: 30000,
+    brand: "Tesla",
+    year: 2021,
+    isAvailable: true,
+    fuelEfficiency: 0,
+    color: "red",
+    supplier: "E-Car Dealer",
+    engineSize: 0,
+  },
+  {
+    model: "Ford Ranger",
+    type: "Truck",
+    price: 57000000,
+    mileage: 110000,
+    brand: "Ford",
+    year: 2019,
+    isAvailable: true,
+    fuelEfficiency: 9.5,
+    color: "black",
+    supplier: "MongolAuto",
+    engineSize: 3.2,
+  },
+  {
+    model: "Hyundai Sonata",
+    type: "Sedan",
+    price: 29000000,
+    mileage: 95000,
+    brand: "Hyundai",
+    year: 2017,
+    isAvailable: false,
+    fuelEfficiency: 6.5,
+    color: "silver",
+    supplier: "AutoJapan",
+    engineSize: 2.4,
+  },
+];
+
+function filterByBrand(vehicles, brandName) {
+  const byName = vehicles.filter((vehicle) => {
+    return vehicle.brand === brandName;
+  });
+
+  return byName;
+}
+
+console.log(filterByBrand(cars2, "Tesla"));
+
+// 6. 100,000 км-ээс их явсан машинуудыг буцаадаг функц бич.
+// function getHighMileageCars(cars) {
+//   // ...
+// }
+
+let cars6 = [
+  {
+    model: "Toyota Prius",
+    type: "Hybrid",
+    price: 35000000,
+    mileage: 120000,
+    brand: "Toyota",
+    year: 2016,
+    isAvailable: true,
+    fuelEfficiency: 4.2,
+    color: "white",
+    supplier: "AutoJapan",
+    engineSize: 1.8,
+  },
+  {
+    model: "Honda Civic",
+    type: "Sedan",
+    price: 32000000,
+    mileage: 85000,
+    brand: "Honda",
+    year: 2018,
+    isAvailable: false,
+    fuelEfficiency: 5.8,
+    color: "blue",
+    supplier: "CityMotors",
+    engineSize: 2.0,
+  },
+  {
+    model: "Tesla Model 3",
+    type: "Electric",
+    price: 85000000,
+    mileage: 30000,
+    brand: "Tesla",
+    year: 2021,
+    isAvailable: true,
+    fuelEfficiency: 0,
+    color: "red",
+    supplier: "E-Car Dealer",
+    engineSize: 0,
+  },
+  {
+    model: "Ford Ranger",
+    type: "Truck",
+    price: 57000000,
+    mileage: 110000,
+    brand: "Ford",
+    year: 2019,
+    isAvailable: true,
+    fuelEfficiency: 9.5,
+    color: "black",
+    supplier: "MongolAuto",
+    engineSize: 3.2,
+  },
+  {
+    model: "Hyundai Sonata",
+    type: "Sedan",
+    price: 29000000,
+    mileage: 95000,
+    brand: "Hyundai",
+    year: 2017,
+    isAvailable: false,
+    fuelEfficiency: 6.5,
+    color: "silver",
+    supplier: "AutoJapan",
+    engineSize: 2.4,
+  },
+];
+
+function getHighMileageCars(vehicles) {
+  const oldCars = vehicles.filter((vehicle) => {
+    return vehicle.mileage >= 100000;
+  });
+
+  return oldCars;
+}
+
+console.log(getHighMileageCars(cars6));
+
+// 7. Машины түлш зарцуулалтаар fuelEfficiency талбарт `efficient: true/false` нэмдэг функц бич (5.0-аас бага бол efficient).
+// function addEfficiencyFlag(cars) {
+//   // ...
+// }
+
+let cars7 = [
+  {
+    model: "Toyota Prius",
+    type: "Hybrid",
+    price: 35000000,
+    mileage: 120000,
+    brand: "Toyota",
+    year: 2016,
+    isAvailable: true,
+    fuelEfficiency: 4.2,
+    color: "white",
+    supplier: "AutoJapan",
+    engineSize: 1.8,
+  },
+  {
+    model: "Honda Civic",
+    type: "Sedan",
+    price: 32000000,
+    mileage: 85000,
+    brand: "Honda",
+    year: 2018,
+    isAvailable: false,
+    fuelEfficiency: 5.8,
+    color: "blue",
+    supplier: "CityMotors",
+    engineSize: 2.0,
+  },
+  {
+    model: "Tesla Model 3",
+    type: "Electric",
+    price: 85000000,
+    mileage: 30000,
+    brand: "Tesla",
+    year: 2021,
+    isAvailable: true,
+    fuelEfficiency: 0,
+    color: "red",
+    supplier: "E-Car Dealer",
+    engineSize: 0,
+  },
+  {
+    model: "Ford Ranger",
+    type: "Truck",
+    price: 57000000,
+    mileage: 110000,
+    brand: "Ford",
+    year: 2019,
+    isAvailable: true,
+    fuelEfficiency: 9.5,
+    color: "black",
+    supplier: "MongolAuto",
+    engineSize: 3.2,
+  },
+  {
+    model: "Hyundai Sonata",
+    type: "Sedan",
+    price: 29000000,
+    mileage: 95000,
+    brand: "Hyundai",
+    year: 2017,
+    isAvailable: false,
+    fuelEfficiency: 6.5,
+    color: "silver",
+    supplier: "AutoJapan",
+    engineSize: 2.4,
+  },
+];
+
+function addEfficiencyFlag(vehichles) {
+  const newCarsList = vehichles.map((vehicle) => {
+    return { ...vehicle, efficient: vehicle.fuelEfficiency < 5 };
+  });
+
+  return newCarsList;
+}
+
+console.log(addEfficiencyFlag(cars7));
+
+// 8. Бүх машины үнийг 15% нэмдэг функц бич.
+// function increaseCarPrices(cars) {
+
+let cars8 = [
+  {
+    model: "Toyota Prius",
+    type: "Hybrid",
+    price: 35000000,
+    mileage: 120000,
+    brand: "Toyota",
+    year: 2016,
+    isAvailable: true,
+    fuelEfficiency: 4.2,
+    color: "white",
+    supplier: "AutoJapan",
+    engineSize: 1.8,
+  },
+  {
+    model: "Honda Civic",
+    type: "Sedan",
+    price: 32000000,
+    mileage: 85000,
+    brand: "Honda",
+    year: 2018,
+    isAvailable: false,
+    fuelEfficiency: 5.8,
+    color: "blue",
+    supplier: "CityMotors",
+    engineSize: 2.0,
+  },
+  {
+    model: "Tesla Model 3",
+    type: "Electric",
+    price: 85000000,
+    mileage: 30000,
+    brand: "Tesla",
+    year: 2021,
+    isAvailable: true,
+    fuelEfficiency: 0,
+    color: "red",
+    supplier: "E-Car Dealer",
+    engineSize: 0,
+  },
+  {
+    model: "Ford Ranger",
+    type: "Truck",
+    price: 57000000,
+    mileage: 110000,
+    brand: "Ford",
+    year: 2019,
+    isAvailable: true,
+    fuelEfficiency: 9.5,
+    color: "black",
+    supplier: "MongolAuto",
+    engineSize: 3.2,
+  },
+  {
+    model: "Hyundai Sonata",
+    type: "Sedan",
+    price: 29000000,
+    mileage: 95000,
+    brand: "Hyundai",
+    year: 2017,
+    isAvailable: false,
+    fuelEfficiency: 6.5,
+    color: "silver",
+    supplier: "AutoJapan",
+    engineSize: 2.4,
+  },
+];
+
+function increaseCarPrices(vehicles, percent) {
+  let NewPricedItemsList = vehicles.map((vehicle) => {
+    return {
+      ...vehicle,
+      price: (vehicle.price * percent) / 100 + vehicle.price,
+    };
+  });
+  return NewPricedItemsList;
+}
+
+console.log(increaseCarPrices(cars8, 10));
+
+// 9. Шинэ талдаа (50,000 км-ээс бага явсан) машинуудыг буцаадаг функц бич.
+// function getLowMileageCars(cars) {
+
+let cars9 = [
+  {
+    model: "Toyota Prius",
+    type: "Hybrid",
+    price: 35000000,
+    mileage: 120000,
+    brand: "Toyota",
+    year: 2016,
+    isAvailable: true,
+    fuelEfficiency: 4.2,
+    color: "white",
+    supplier: "AutoJapan",
+    engineSize: 1.8,
+  },
+  {
+    model: "Honda Civic",
+    type: "Sedan",
+    price: 32000000,
+    mileage: 85000,
+    brand: "Honda",
+    year: 2018,
+    isAvailable: false,
+    fuelEfficiency: 5.8,
+    color: "blue",
+    supplier: "CityMotors",
+    engineSize: 2.0,
+  },
+  {
+    model: "Tesla Model 3",
+    type: "Electric",
+    price: 85000000,
+    mileage: 30000,
+    brand: "Tesla",
+    year: 2021,
+    isAvailable: true,
+    fuelEfficiency: 0,
+    color: "red",
+    supplier: "E-Car Dealer",
+    engineSize: 0,
+  },
+  {
+    model: "Ford Ranger",
+    type: "Truck",
+    price: 57000000,
+    mileage: 110000,
+    brand: "Ford",
+    year: 2019,
+    isAvailable: true,
+    fuelEfficiency: 9.5,
+    color: "black",
+    supplier: "MongolAuto",
+    engineSize: 3.2,
+  },
+  {
+    model: "Hyundai Sonata",
+    type: "Sedan",
+    price: 29000000,
+    mileage: 95000,
+    brand: "Hyundai",
+    year: 2017,
+    isAvailable: false,
+    fuelEfficiency: 6.5,
+    color: "silver",
+    supplier: "AutoJapan",
+    engineSize: 2.4,
+  },
+];
+
+function getLowMileageCars(vehicles) {
+  const AlmostNewCarsList = vehicles.filter((vehicle) => {
+    return vehicle.mileage < 50000;
+  });
+
+  return AlmostNewCarsList;
+}
+
+console.log(getLowMileageCars(cars9));
+
+// 10. Хамгийн бага түлш зарцуулалттай машиныг буцаадаг функц бич.
+// function getMostEfficientCar(cars) {
+
+let cars10 = [
+  {
+    model: "Toyota Prius",
+    type: "Hybrid",
+    price: 35000000,
+    mileage: 120000,
+    brand: "Toyota",
+    year: 2016,
+    isAvailable: true,
+    fuelEfficiency: 4.2,
+    color: "white",
+    supplier: "AutoJapan",
+    engineSize: 1.8,
+  },
+  {
+    model: "Honda Civic",
+    type: "Sedan",
+    price: 32000000,
+    mileage: 85000,
+    brand: "Honda",
+    year: 2018,
+    isAvailable: false,
+    fuelEfficiency: 5.8,
+    color: "blue",
+    supplier: "CityMotors",
+    engineSize: 2.0,
+  },
+  {
+    model: "Tesla Model 3",
+    type: "Electric",
+    price: 85000000,
+    mileage: 30000,
+    brand: "Tesla",
+    year: 2021,
+    isAvailable: true,
+    fuelEfficiency: 0,
+    color: "red",
+    supplier: "E-Car Dealer",
+    engineSize: 0,
+  },
+  {
+    model: "Ford Ranger",
+    type: "Truck",
+    price: 57000000,
+    mileage: 110000,
+    brand: "Ford",
+    year: 2019,
+    isAvailable: true,
+    fuelEfficiency: 9.5,
+    color: "black",
+    supplier: "MongolAuto",
+    engineSize: 3.2,
+  },
+  {
+    model: "Hyundai Sonata",
+    type: "Sedan",
+    price: 29000000,
+    mileage: 95000,
+    brand: "Hyundai",
+    year: 2017,
+    isAvailable: false,
+    fuelEfficiency: 6.5,
+    color: "silver",
+    supplier: "AutoJapan",
+    engineSize: 2.4,
+  },
+];
+
+function getMostEfficientCar(vehicles) {
+  let MostEfficientCar = vehicles.sort((a, b) => a.mileage - b.mileage);
+
+  return MostEfficientCar[0];
+}
+
+console.log(getMostEfficientCar(cars10));
+
+// 11. Хамгийн өндөр үнэтэй машиныг буцаадаг функц бич.
+// // function getMostExpensiveCar(cars) {
+
+// import [ carsaa ] from "./Exercise Data.js";
+
+let cars11 = [
+  {
+    model: "Toyota Prius",
+    type: "Hybrid",
+    price: 35000000,
+    mileage: 120000,
+    brand: "Toyota",
+    year: 2016,
+    isAvailable: true,
+    fuelEfficiency: 4.2,
+    color: "white",
+    supplier: "AutoJapan",
+    engineSize: 1.8,
+  },
+  {
+    model: "Honda Civic",
+    type: "Sedan",
+    price: 32000000,
+    mileage: 85000,
+    brand: "Honda",
+    year: 2018,
+    isAvailable: false,
+    fuelEfficiency: 5.8,
+    color: "blue",
+    supplier: "CityMotors",
+    engineSize: 2.0,
+  },
+  {
+    model: "Tesla Model 3",
+    type: "Electric",
+    price: 85000000,
+    mileage: 30000,
+    brand: "Tesla",
+    year: 2021,
+    isAvailable: true,
+    fuelEfficiency: 0,
+    color: "red",
+    supplier: "E-Car Dealer",
+    engineSize: 0,
+  },
+  {
+    model: "Ford Ranger",
+    type: "Truck",
+    price: 57000000,
+    mileage: 110000,
+    brand: "Ford",
+    year: 2019,
+    isAvailable: true,
+    fuelEfficiency: 9.5,
+    color: "black",
+    supplier: "MongolAuto",
+    engineSize: 3.2,
+  },
+  {
+    model: "Hyundai Sonata",
+    type: "Sedan",
+    price: 29000000,
+    mileage: 95000,
+    brand: "Hyundai",
+    year: 2017,
+    isAvailable: false,
+    fuelEfficiency: 6.5,
+    color: "silver",
+    supplier: "AutoJapan",
+    engineSize: 2.4,
+  },
+];
+
+function getMostExpensiveCar(vehicles) {
+  let sortedCars = vehicles.sort((a, b) => b.price - a.price);
+  return sortedCars[0];
+}
+
+console.log(getMostExpensiveCar(cars11));
+
+// 12. Бүх машины нийлбэр mileage-г буцаадаг функц бич.
+// function getTotalMileage(cars) {
+
+let cars12 = [
+  {
+    model: "Toyota Prius",
+    type: "Hybrid",
+    price: 35000000,
+    mileage: 120000,
+    brand: "Toyota",
+    year: 2016,
+    isAvailable: true,
+    fuelEfficiency: 4.2,
+    color: "white",
+    supplier: "AutoJapan",
+    engineSize: 1.8,
+  },
+  {
+    model: "Honda Civic",
+    type: "Sedan",
+    price: 32000000,
+    mileage: 85000,
+    brand: "Honda",
+    year: 2018,
+    isAvailable: false,
+    fuelEfficiency: 5.8,
+    color: "blue",
+    supplier: "CityMotors",
+    engineSize: 2.0,
+  },
+  {
+    model: "Tesla Model 3",
+    type: "Electric",
+    price: 85000000,
+    mileage: 30000,
+    brand: "Tesla",
+    year: 2021,
+    isAvailable: true,
+    fuelEfficiency: 0,
+    color: "red",
+    supplier: "E-Car Dealer",
+    engineSize: 0,
+  },
+  {
+    model: "Ford Ranger",
+    type: "Truck",
+    price: 57000000,
+    mileage: 110000,
+    brand: "Ford",
+    year: 2019,
+    isAvailable: true,
+    fuelEfficiency: 9.5,
+    color: "black",
+    supplier: "MongolAuto",
+    engineSize: 3.2,
+  },
+  {
+    model: "Hyundai Sonata",
+    type: "Sedan",
+    price: 29000000,
+    mileage: 95000,
+    brand: "Hyundai",
+    year: 2017,
+    isAvailable: false,
+    fuelEfficiency: 6.5,
+    color: "silver",
+    supplier: "AutoJapan",
+    engineSize: 2.4,
+  },
+];
+
+function getTotalMileage(vehicles) {
+  const totalMiliage = 0;
+
+  return vehicles.map((vehicle) => {
+    totalMiliage += vehicles.mileage;
+  });
+
+  return totalMiliage;
+}
+
+console.log(getTotalMileage(cars12));
+
+// 13. Supplier нэрээр машинуудыг шүүж буцаадаг функц бич.
+
+let cars13 = [
+  {
+    model: "Toyota Prius",
+    type: "Hybrid",
+    price: 35000000,
+    mileage: 120000,
+    brand: "Toyota",
+    year: 2016,
+    isAvailable: true,
+    fuelEfficiency: 4.2,
+    color: "white",
+    supplier: "AutoJapan",
+    engineSize: 1.8,
+  },
+  {
+    model: "Honda Civic",
+    type: "Sedan",
+    price: 32000000,
+    mileage: 85000,
+    brand: "Honda",
+    year: 2018,
+    isAvailable: false,
+    fuelEfficiency: 5.8,
+    color: "blue",
+    supplier: "CityMotors",
+    engineSize: 2.0,
+  },
+  {
+    model: "Tesla Model 3",
+    type: "Electric",
+    price: 85000000,
+    mileage: 30000,
+    brand: "Tesla",
+    year: 2021,
+    isAvailable: true,
+    fuelEfficiency: 0,
+    color: "red",
+    supplier: "E-Car Dealer",
+    engineSize: 0,
+  },
+  {
+    model: "Ford Ranger",
+    type: "Truck",
+    price: 57000000,
+    mileage: 110000,
+    brand: "Ford",
+    year: 2019,
+    isAvailable: true,
+    fuelEfficiency: 9.5,
+    color: "black",
+    supplier: "MongolAuto",
+    engineSize: 3.2,
+  },
+  {
+    model: "Hyundai Sonata",
+    type: "Sedan",
+    price: 29000000,
+    mileage: 95000,
+    brand: "Hyundai",
+    year: 2017,
+    isAvailable: false,
+    fuelEfficiency: 6.5,
+    color: "silver",
+    supplier: "AutoJapan",
+    engineSize: 2.4,
+  },
+];
+
+function filterBySupplier(cars13, supplierName) {
+  let SupplierBaseData = cars13.filter((car) => {
+    return car.supplier === supplierName;
+  });
+
+  return SupplierBaseData;
+}
+
+console.log(filterBySupplier(cars13, "AutoJapan"));
+
+// 14. Машины model нэрсийг массив болгож буцаадаг функц бич.
+// function getCarModels(cars) {
+
+let cars14 = [
+  {
+    model: "Toyota Prius",
+    type: "Hybrid",
+    price: 35000000,
+    mileage: 120000,
+    brand: "Toyota",
+    year: 2016,
+    isAvailable: true,
+    fuelEfficiency: 4.2,
+    color: "white",
+    supplier: "AutoJapan",
+    engineSize: 1.8,
+  },
+  {
+    model: "Honda Civic",
+    type: "Sedan",
+    price: 32000000,
+    mileage: 85000,
+    brand: "Honda",
+    year: 2018,
+    isAvailable: false,
+    fuelEfficiency: 5.8,
+    color: "blue",
+    supplier: "CityMotors",
+    engineSize: 2.0,
+  },
+  {
+    model: "Tesla Model 3",
+    type: "Electric",
+    price: 85000000,
+    mileage: 30000,
+    brand: "Tesla",
+    year: 2021,
+    isAvailable: true,
+    fuelEfficiency: 0,
+    color: "red",
+    supplier: "E-Car Dealer",
+    engineSize: 0,
+  },
+  {
+    model: "Ford Ranger",
+    type: "Truck",
+    price: 57000000,
+    mileage: 110000,
+    brand: "Ford",
+    year: 2019,
+    isAvailable: true,
+    fuelEfficiency: 9.5,
+    color: "black",
+    supplier: "MongolAuto",
+    engineSize: 3.2,
+  },
+  {
+    model: "Hyundai Sonata",
+    type: "Sedan",
+    price: 29000000,
+    mileage: 95000,
+    brand: "Hyundai",
+    year: 2017,
+    isAvailable: false,
+    fuelEfficiency: 6.5,
+    color: "silver",
+    supplier: "AutoJapan",
+    engineSize: 2.4,
+  },
+];
+
+function getCarModels(cars14) {
+  let CarModelNames = cars14.map((car) => {
+    return { model: car.model };
+  });
+
+  return CarModelNames;
+}
+
+console.log(getCarModels(cars14));
+
+// 15. Машинуудыг үнийн өсөхөөр эрэмбэлж буцаадаг функц бич.
+// function sortByPriceAscending(cars) {
+//   // ...
+// }
+
+let cars15 = [
+  {
+    model: "Toyota Prius",
+    type: "Hybrid",
+    price: 35000000,
+    mileage: 120000,
+    brand: "Toyota",
+    year: 2016,
+    isAvailable: true,
+    fuelEfficiency: 4.2,
+    color: "white",
+    supplier: "AutoJapan",
+    engineSize: 1.8,
+  },
+  {
+    model: "Honda Civic",
+    type: "Sedan",
+    price: 32000000,
+    mileage: 85000,
+    brand: "Honda",
+    year: 2018,
+    isAvailable: false,
+    fuelEfficiency: 5.8,
+    color: "blue",
+    supplier: "CityMotors",
+    engineSize: 2.0,
+  },
+  {
+    model: "Tesla Model 3",
+    type: "Electric",
+    price: 85000000,
+    mileage: 30000,
+    brand: "Tesla",
+    year: 2021,
+    isAvailable: true,
+    fuelEfficiency: 0,
+    color: "red",
+    supplier: "E-Car Dealer",
+    engineSize: 0,
+  },
+  {
+    model: "Ford Ranger",
+    type: "Truck",
+    price: 57000000,
+    mileage: 110000,
+    brand: "Ford",
+    year: 2019,
+    isAvailable: true,
+    fuelEfficiency: 9.5,
+    color: "black",
+    supplier: "MongolAuto",
+    engineSize: 3.2,
+  },
+  {
+    model: "Hyundai Sonata",
+    type: "Sedan",
+    price: 29000000,
+    mileage: 95000,
+    brand: "Hyundai",
+    year: 2017,
+    isAvailable: false,
+    fuelEfficiency: 6.5,
+    color: "silver",
+    supplier: "AutoJapan",
+    engineSize: 2.4,
+  },
+];
+function sortByPriceAscending(cars15) {
+  return cars15.sort((a, b) => a.price - b.price);
+}
+
+console.log(sortByPriceAscending(cars15));
+
+// 16. Engine size нь 2.0-аас их машинуудыг буцаадаг функц бич.
+// function getLargeEngineCars(cars) {
+
+let cars16 = [
+  {
+    model: "Toyota Prius",
+    type: "Hybrid",
+    price: 35000000,
+    mileage: 120000,
+    brand: "Toyota",
+    year: 2016,
+    isAvailable: true,
+    fuelEfficiency: 4.2,
+    color: "white",
+    supplier: "AutoJapan",
+    engineSize: 1.8,
+  },
+  {
+    model: "Honda Civic",
+    type: "Sedan",
+    price: 32000000,
+    mileage: 85000,
+    brand: "Honda",
+    year: 2018,
+    isAvailable: false,
+    fuelEfficiency: 5.8,
+    color: "blue",
+    supplier: "CityMotors",
+    engineSize: 2.0,
+  },
+  {
+    model: "Tesla Model 3",
+    type: "Electric",
+    price: 85000000,
+    mileage: 30000,
+    brand: "Tesla",
+    year: 2021,
+    isAvailable: true,
+    fuelEfficiency: 0,
+    color: "red",
+    supplier: "E-Car Dealer",
+    engineSize: 0,
+  },
+  {
+    model: "Ford Ranger",
+    type: "Truck",
+    price: 57000000,
+    mileage: 110000,
+    brand: "Ford",
+    year: 2019,
+    isAvailable: true,
+    fuelEfficiency: 9.5,
+    color: "black",
+    supplier: "MongolAuto",
+    engineSize: 3.2,
+  },
+  {
+    model: "Hyundai Sonata",
+    type: "Sedan",
+    price: 29000000,
+    mileage: 95000,
+    brand: "Hyundai",
+    year: 2017,
+    isAvailable: false,
+    fuelEfficiency: 6.5,
+    color: "silver",
+    supplier: "AutoJapan",
+    engineSize: 2.4,
+  },
+];
+
+function getLargeEngineCars(cars16) {
+  let filterByEngine = cars16.filter((car) => {
+    return car.engineSize > 2.0;
+  });
+
+  return filterByEngine;
+}
+console.log(getLargeEngineCars(cars16));
+
+// 17. Давхардалгүй брэндийн нэрсийг массив болгон буцаадаг функц бич.
+// function getUniqueBrands(cars) {
+
+let cars17 = [
+  {
+    model: "Toyota Prius",
+    type: "Hybrid",
+    price: 35000000,
+    mileage: 120000,
+    brand: "Toyota",
+    year: 2016,
+    isAvailable: true,
+    fuelEfficiency: 4.2,
+    color: "white",
+    supplier: "AutoJapan",
+    engineSize: 1.8,
+  },
+  {
+    model: "Honda Civic",
+    type: "Sedan",
+    price: 32000000,
+    mileage: 85000,
+    brand: "Honda",
+    year: 2018,
+    isAvailable: false,
+    fuelEfficiency: 5.8,
+    color: "blue",
+    supplier: "CityMotors",
+    engineSize: 2.0,
+  },
+  {
+    model: "Tesla Model 3",
+    type: "Electric",
+    price: 85000000,
+    mileage: 30000,
+    brand: "Tesla",
+    year: 2021,
+    isAvailable: true,
+    fuelEfficiency: 0,
+    color: "red",
+    supplier: "E-Car Dealer",
+    engineSize: 0,
+  },
+  {
+    model: "Ford Ranger",
+    type: "Truck",
+    price: 57000000,
+    mileage: 110000,
+    brand: "Ford",
+    year: 2019,
+    isAvailable: true,
+    fuelEfficiency: 9.5,
+    color: "black",
+    supplier: "MongolAuto",
+    engineSize: 3.2,
+  },
+  {
+    model: "Hyundai Sonata",
+    type: "Sedan",
+    price: 29000000,
+    mileage: 95000,
+    brand: "Hyundai",
+    year: 2017,
+    isAvailable: false,
+    fuelEfficiency: 6.5,
+    color: "silver",
+    supplier: "AutoJapan",
+    engineSize: 2.4,
+  },
+];
+
+function getUniqueBrands(cars) {}
+
+// 18. Зөвхөн model ба year талбартай шинэ массив үүсгэдэг функц бич.
+// function getModelAndYearList(cars) {
+
+let cars18 = [
+  {
+    model: "Toyota Prius",
+    type: "Hybrid",
+    price: 35000000,
+    mileage: 120000,
+    brand: "Toyota",
+    year: 2016,
+    isAvailable: true,
+    fuelEfficiency: 4.2,
+    color: "white",
+    supplier: "AutoJapan",
+    engineSize: 1.8,
+  },
+  {
+    model: "Honda Civic",
+    type: "Sedan",
+    price: 32000000,
+    mileage: 85000,
+    brand: "Honda",
+    year: 2018,
+    isAvailable: false,
+    fuelEfficiency: 5.8,
+    color: "blue",
+    supplier: "CityMotors",
+    engineSize: 2.0,
+  },
+  {
+    model: "Tesla Model 3",
+    type: "Electric",
+    price: 85000000,
+    mileage: 30000,
+    brand: "Tesla",
+    year: 2021,
+    isAvailable: true,
+    fuelEfficiency: 0,
+    color: "red",
+    supplier: "E-Car Dealer",
+    engineSize: 0,
+  },
+  {
+    model: "Ford Ranger",
+    type: "Truck",
+    price: 57000000,
+    mileage: 110000,
+    brand: "Ford",
+    year: 2019,
+    isAvailable: true,
+    fuelEfficiency: 9.5,
+    color: "black",
+    supplier: "MongolAuto",
+    engineSize: 3.2,
+  },
+  {
+    model: "Hyundai Sonata",
+    type: "Sedan",
+    price: 29000000,
+    mileage: 95000,
+    brand: "Hyundai",
+    year: 2017,
+    isAvailable: false,
+    fuelEfficiency: 6.5,
+    color: "silver",
+    supplier: "AutoJapan",
+    engineSize: 2.4,
+  },
+];
+
+function getModelAndYearList(cars18) {
+  let NewList = cars18.map((car) => {
+    return { model: car.model, year: car.year };
+  });
+
+  return NewList;
+}
+
+console.log(getModelAndYearList(cars18));
+
+// 19. 4.0-с бага fuel efficiency-тай машинуудыг "super efficient" гэж тэмдэглэдэг функц бич.
+// function tagSuperEfficientCars(cars) {
+
+let cars19 = [
+  {
+    model: "Toyota Prius",
+    type: "Hybrid",
+    price: 35000000,
+    mileage: 120000,
+    brand: "Toyota",
+    year: 2016,
+    isAvailable: true,
+    fuelEfficiency: 4.2,
+    color: "white",
+    supplier: "AutoJapan",
+    engineSize: 1.8,
+  },
+  {
+    model: "Honda Civic",
+    type: "Sedan",
+    price: 32000000,
+    mileage: 85000,
+    brand: "Honda",
+    year: 2018,
+    isAvailable: false,
+    fuelEfficiency: 5.8,
+    color: "blue",
+    supplier: "CityMotors",
+    engineSize: 2.0,
+  },
+  {
+    model: "Tesla Model 3",
+    type: "Electric",
+    price: 85000000,
+    mileage: 30000,
+    brand: "Tesla",
+    year: 2021,
+    isAvailable: true,
+    fuelEfficiency: 0,
+    color: "red",
+    supplier: "E-Car Dealer",
+    engineSize: 0,
+  },
+  {
+    model: "Ford Ranger",
+    type: "Truck",
+    price: 57000000,
+    mileage: 110000,
+    brand: "Ford",
+    year: 2019,
+    isAvailable: true,
+    fuelEfficiency: 9.5,
+    color: "black",
+    supplier: "MongolAuto",
+    engineSize: 3.2,
+  },
+  {
+    model: "Hyundai Sonata",
+    type: "Sedan",
+    price: 29000000,
+    mileage: 95000,
+    brand: "Hyundai",
+    year: 2017,
+    isAvailable: false,
+    fuelEfficiency: 6.5,
+    color: "silver",
+    supplier: "AutoJapan",
+    engineSize: 2.4,
+  },
+];
+
+function tagSuperEfficientCars(cars19) {
+  let Marks = cars19.map((car) => {
+    if (car.fuelEfficiency < 4.0) {
+      return { ...car, mark: "Super Efficient" };
+    }
+  });
+
+  return Marks;
+}
+
+console.log(tagSuperEfficientCars(cars19));
+
+// 20. Бүх машинд `id` талбар нэмдэг функц бич (1-с эхэлнэ).
+// function addIdToCars(cars) {}
+
+let cars20 = [
+  {
+    model: "Toyota Prius",
+    type: "Hybrid",
+    price: 35000000,
+    mileage: 120000,
+    brand: "Toyota",
+    year: 2016,
+    isAvailable: true,
+    fuelEfficiency: 4.2,
+    color: "white",
+    supplier: "AutoJapan",
+    engineSize: 1.8,
+  },
+  {
+    model: "Honda Civic",
+    type: "Sedan",
+    price: 32000000,
+    mileage: 85000,
+    brand: "Honda",
+    year: 2018,
+    isAvailable: false,
+    fuelEfficiency: 5.8,
+    color: "blue",
+    supplier: "CityMotors",
+    engineSize: 2.0,
+  },
+  {
+    model: "Tesla Model 3",
+    type: "Electric",
+    price: 85000000,
+    mileage: 30000,
+    brand: "Tesla",
+    year: 2021,
+    isAvailable: true,
+    fuelEfficiency: 0,
+    color: "red",
+    supplier: "E-Car Dealer",
+    engineSize: 0,
+  },
+  {
+    model: "Ford Ranger",
+    type: "Truck",
+    price: 57000000,
+    mileage: 110000,
+    brand: "Ford",
+    year: 2019,
+    isAvailable: true,
+    fuelEfficiency: 9.5,
+    color: "black",
+    supplier: "MongolAuto",
+    engineSize: 3.2,
+  },
+  {
+    model: "Hyundai Sonata",
+    type: "Sedan",
+    price: 29000000,
+    mileage: 95000,
+    brand: "Hyundai",
+    year: 2017,
+    isAvailable: false,
+    fuelEfficiency: 6.5,
+    color: "silver",
+    supplier: "AutoJapan",
+    engineSize: 2.4,
+  },
+];
+
+function addIdToCars(cars20) {
+  IDCounter = 0;
+
+  let IDAdded = cars20.map((car) => {
+    return { ...car, id: IDCounter++ };
+  });
+
+  return IDAdded;
+}
+
+console.log(addIdToCars(cars20));
